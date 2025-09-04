@@ -35,6 +35,21 @@
     <section class="card" id="player">
       <h2>Scene</h2>
       <div id="scene-text" class="prose"></div>
+
+      <!-- NEW: free-input console -->
+      <div class="console">
+        <form id="freeform" autocomplete="off" aria-labelledby="console-label">
+          <label id="console-label" class="sr-only">Speak to Chloe</label>
+          <input id="utterance" type="text" placeholder="Type a thought… e.g., 'Why spirals?'" aria-label="Thought input" />
+          <button type="submit" title="Send">Send</button>
+          <select id="tone" title="Guidance tone">
+            <option value="gentle" selected>Gentle</option>
+            <option value="snark">Snark</option>
+          </select>
+        </form>
+        <div id="response" class="response" aria-live="polite"></div>
+      </div>
+
       <div id="choices" class="choices"></div>
       <div class="toolbar">
         <button id="back-btn" title="Go to previous scene">◀ Back</button>
@@ -50,7 +65,7 @@
   </main>
 
   <footer class="wrap footer">
-    <small>© FourTwenty Analytics · Built as a file‑based engine (no build). · <a href="#" id="emit-debug">Emit debug event</a></small>
+    <small>© FourTwenty Analytics · Built as a file-based engine (no build). · <a href="#" id="emit-debug">Emit debug event</a></small>
   </footer>
 
   <!-- App scripts -->
@@ -62,17 +77,15 @@
       const link  = document.getElementById('open-readme');
       if (!panel || !link) return;
 
-      const raw = (function(resolve){
+      const raw = (function(){
         try {
           const url = new URL(window.location.href);
-          // Works for GitHub Pages or local file serving
           const base = url.origin + url.pathname.replace(/\/[^/]*$/, '/');
           return base + 'README.md';
         } catch(e) { return 'README.md'; }
       })();
 
       fetch(raw).then(r=>r.text()).then(txt=>{
-        // Minimal markdown→HTML: preserve code fences & headings (non-perfect by design)
         const html = txt
           .replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>')
           .replace(/^# (.*)$/gm, '<h1>$1</h1>')
