@@ -1,0 +1,33 @@
+{
+  "rules": [
+    {
+      "id": "why_spirals",
+      "patterns": ["\\bwhy\\b.*\\bspirals\\b", "\\bspirals\\b.*\\bwhy\\b"],
+      "actions": [
+        {
+          "type": "message",
+          "text_gentle": "Chloe: Spirals concentrate resonance, letting faint memories sum into something legible. We can read without taking.",
+          "text_snark": "Visor: Question logged. Spirals resonate. Pick from your visor or stop poking the archive."
+        },
+        { "type": "tag_emit", "tags": ["spiral_fields", "carapace_glyphs"] },
+        { "type": "recommend", "choices": ["Request orbital survey", "Just listen"] }
+      ]
+    },
+    {
+      "id": "why_generic",
+      "patterns": ["^\\s*why\\b", "\\bwhy\\b"],
+      "actions": [
+        {
+          "type": "message",
+          "text_gentle": "Chloe notes the why and widens the filter. Try specifying a subject: *why pulses*, *why descent*, or choose an option.",
+          "text_snark": "Visor: Philosophy quota exceeded. Pick a path."
+        }
+      ]
+    },
+    {
+      "id": "spirals_navigate",
+      "patterns": ["\\bspirals?\\b"],
+      "actions": [ { "type": "navigate", "scene": "spiral_field" } ]
+    }
+  ]
+}
