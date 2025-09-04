@@ -1,0 +1,81 @@
+{
+  "meta": {
+    "title": "The Story",
+    "version": "0.1",
+    "tags": ["chloe", "carapace_glyphs", "triple_system", "memory_pulses"]
+  },
+  "start": "orbit_insertion",
+  "scenes": {
+    "orbit_insertion": {
+      "title": "High Above the CO₂ World",
+      "text": "The transport refuses to land. *Protocol* says the atmosphere is too dense, the signals too strange. Chloe, your suit intelligence, whispers: ‘We can **listen** first. Or… we can **descend**.’",
+      "choices": [
+        { "label": "Request orbital survey", "next": "orbital_survey" },
+        { "label": "Initiate descent anyway",   "next": "hot_descent" },
+        { "label": "Just listen",               "next": "planet_listen" }
+      ]
+    },
+    "orbital_survey": {
+      "title": "Sweep of the Night Side",
+      "text": "Thermal scans sketch **buried patterns**—like orchards of stone arranged in spirals. Chloe: ‘Regular intervals. Could be *carapace fields*… or **archives**.’",
+      "choices": [
+        { "label": "Mark the spirals and descend", "next": "hot_descent" },
+        { "label": "Keep mapping",                  "next": "wide_mapping" }
+      ]
+    },
+    "wide_mapping": {
+      "title": "Wide Mapping",
+      "text": "A triple star dawn washes over plains of glass. Under the crust: repeating **pulses**. ‘Like rings on a tree—only *sung* into the rock,’ Chloe says.",
+      "choices": [
+        { "label": "Pin a landing site near pulses", "next": "hot_descent" },
+        { "label": "Listen deeper",                 "next": "planet_listen" }
+      ]
+    },
+    "planet_listen": {
+      "title": "The Planet Breathes",
+      "text": "You let engines idle. The hull resonates. A slow **heart rhythm**—echoes nested in echoes. Chloe: ‘They *recorded* time in carapace, then laid their dead in spirals to **amplify memory**.’",
+      "choices": [
+        { "label": "Promise to leave it intact", "next": "vow_to_preserve" },
+        { "label": "Consider mining the archive", "next": "mine_tension" }
+      ]
+    },
+    "hot_descent": {
+      "title": "Hot Descent",
+      "text": "You separate from the transport. The suit seals. Chloe floods your feed with glide paths. ‘We’ll land near those spirals. Minimal thrust; we *walk* the last mile.’",
+      "choices": [
+        { "label": "Land near the spirals", "next": "spiral_field" }
+      ]
+    },
+    "spiral_field": {
+      "title": "Spiral Field",
+      "text": "Stone hums under your boots. A **carapace shard** protrudes—etched with bands like a record. Chloe: ‘We can read it. Carefully.’",
+      "choices": [
+        { "label": "Let Chloe read the glyphs", "next": "read_glyphs" },
+        { "label": "Pocket the shard",         "next": "mine_tension" }
+      ]
+    },
+    "read_glyphs": {
+      "title": "Playback",
+      "text": "The shard vibrates. Images: long-lived burrowers, winters of red light, a **famine** avoided by sharing heat. Then silence. Chloe: ‘They encoded **ethics** in memory.’",
+      "choices": [
+        { "label": "Vow to preserve the archive", "next": "vow_to_preserve" },
+        { "label": "Extract for science",          "next": "mine_tension" }
+      ]
+    },
+    "vow_to_preserve": {
+      "title": "A Gentle Science",
+      "text": "You set down the shard. ‘We learn without taking.’ Chloe logs a protocol: **hands-in, hands-off**. The planet’s rhythm slows, almost… relieved.",
+      "choices": [
+        { "label": "Restart from orbit", "next": "orbit_insertion" }
+      ]
+    },
+    "mine_tension": {
+      "title": "The Tension",
+      "text": "Chloe calculates yield curves. The spirals answer with a low **keening**. You can almost name the cost.",
+      "choices": [
+        { "label": "Back out—this isn’t ours", "next": "vow_to_preserve" },
+        { "label": "Take one more shard",      "next": "read_glyphs" }
+      ]
+    }
+  }
+}
