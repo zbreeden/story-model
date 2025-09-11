@@ -1,0 +1,98 @@
+# registry.yml
+version: 1
+
+$schema: "schema/registry.schema.yml"
+
+# ---- Default seed set (anchor) ---------------------------------------------
+default_seeds: &default_seeds
+  glossary: { path: "seeds/glossary.yml",  schema: "schema/glossary.schema.yml",  required: false }
+  tags:     { path: "seeds/tags.yml",      schema: "schema/tags.schema.yml",      required: true  }
+  statuses: { path: "seeds/statuses.yml",  schema: "schema/statuses.schema.yml",  required: true  }
+  orbits:   { path: "seeds/orbits.yml",    schema: "schema/orbits.schema.yml",    required: false }
+  modules:  { path: "seeds/modules.yml",   schema: "schema/modules.schema.yml",   required: false }
+  rules:    { path: "seeds/rules.yml",     schema: "schema/rules.schema.yml",     required: false }
+  emoji_palette: { path: "seeds/emoji_palette.yml", schema: "schema/emoji_palette.schema.yml", required: false }
+  seedset: { path: "seeds/seedset.yml" schema: "schema/seedset.schema.yml", required: false }
+  funnel_spec: { path: "schema/funnel_spec.yml", schema: "schema/funnel_spec.schema.yml", required: false }
+
+# ---- Repos in the constellation -------------------------------------------
+repos:
+  - owner: zbreeden
+    name: launch-model
+    seeds: *default_seeds
+
+  - owner: zbreeden
+    name: FourTwentyAnalytics
+    seeds: *default_seeds
+
+  - owner: zbreeden
+    name: archive-model
+    seeds: *default_seeds
+
+  - owner: zbreeden
+    name: signal-model
+    seeds:
+      <<: *default_seeds
+      funnel_spec: { path: "schema/funnel_spec.yml", schema: "schema/funnel_spec.schema.yml", required: false }
+
+  - owner: zbreeden
+    name: bank-model
+    seeds: *default_seeds
+
+  - owner: zbreeden
+    name: protector-model
+    seeds: *default_seeds
+
+  - owner: zbreeden
+    name: gambler-model
+    seeds: *default_seeds
+
+  - owner: zbreeden
+    name: coach-model
+    seeds: *default_seeds
+
+  - owner: zbreeden
+    name: player-model
+    seeds: *default_seeds
+
+  - owner: zbreeden
+    name: story-model
+    seeds: *default_seeds
+
+  - owner: zbreeden
+    name: visualizer-model
+    seeds: *default_seeds
+
+  - owner: zbreeden
+    name: trainer-model
+    seeds: *default_seeds
+
+  - owner: zbreeden
+    name: evaluator-model
+    seeds: *default_seeds
+
+  - owner: zbreeden
+    name: grower-model
+    seeds: *default_seeds
+
+  - owner: zbreeden
+    name: orbiter-model
+    seeds: *default_seeds
+
+  - owner: zbreeden
+    name: catalyst-model
+    seeds: *default_seeds
+
+  - owner: zbreeden
+    name: mirror-model
+    seeds: *default_seeds
+
+  - owner: zbreeden
+    name: firm-model
+    seeds: *default_seeds
+
+  - owner: zbreeden
+    name: anchor-model
+    seeds: *default_seeds
+
+  
