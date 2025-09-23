@@ -1,102 +1,89 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FourTwenty Analytics — The Story</title>
-  <meta name="description" content="A lightweight, file-based narrative engine (scenes + choices) with analytics hooks." />
-  <meta name="color-scheme" content="light dark" />
-
-  <!-- Google Tag Manager (GTM) -->
-  <script>
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
-      var f=d.getElementsByTagName(s)[0], j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';
-      j.async=true; j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
-      f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-WVC4SNLB'); /* ← replace if needed */
-  </script>
-  <!-- End GTM -->
-
-  <link rel="stylesheet" href="styles/site.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Story Model - FourTwenty Analytics</title>
+  <meta name="description" content="The Story is the narrator">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>📖</text></svg>">
 </head>
 <body>
-  <!-- GTM (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WVC4SNLB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-
-  <header class="wrap header">
-    <div class="brand">
-      <a href="https://zbreeden.github.io/FourTwentyAnalytics/" class="crumb">⟵ Constellation</a>
-      <h1>📖 The Story</h1>
-      <p class="tagline">Narrative lives here. The Player handles sims; The Story handles scenes & choices.</p>
-    </div>
+  <header>
+    <h1>📖 Story Model</h1>
+    <p>The Story is the narrator</p>
+    <nav>
+      <a href="https://zbreeden.github.io/FourTwentyAnalytics/">← Back to Hub</a> |
+      <a href="https://github.com/zbreeden/story-model">Repository</a> |
+      <a href="https://github.com/zbreeden/FourTwentyAnalytics">Hub Source</a>
+    </nav>
   </header>
-
-  <main class="wrap grid">
-    <section class="card" id="player">
-      <h2>Scene</h2>
-      <div id="scene-text" class="prose"></div>
-
-      <!-- NEW: free-input console -->
-      <div class="console">
-        <form id="freeform" autocomplete="off" aria-labelledby="console-label">
-          <label id="console-label" class="sr-only">Speak to Chloe</label>
-          <input id="utterance" type="text" placeholder="Type a thought… e.g., 'Why spirals?'" aria-label="Thought input" />
-          <button type="submit" title="Send">Send</button>
-          <select id="tone" title="Guidance tone">
-            <option value="gentle" selected>Gentle</option>
-            <option value="snark">Snark</option>
-          </select>
-        </form>
-        <div id="response" class="response" aria-live="polite"></div>
-      </div>
-
-      <div id="choices" class="choices"></div>
-      <div class="toolbar">
-        <button id="back-btn" title="Go to previous scene">◀ Back</button>
-        <button id="restart-btn" title="Restart story">⟲ Restart</button>
-      </div>
+  
+  <main>
+    <section>
+      <h2>🌌 Constellation Info</h2>
+      <ul>
+        <li><strong>Orbit</strong>: delivery-insight</li>
+        <li><strong>Status</strong>: seed</li>  
+        <li><strong>Module Key</strong>: <code>story_model</code></li>
+      </ul>
     </section>
-
-    <section class="card" id="readme-card">
-      <h2>Repo Docs</h2>
-      <p><a id="open-readme" href="README.md" target="_blank" rel="noopener">Open README on GitHub</a></p>
-      <article id="readme-panel" class="prose muted"><em>Loading README…</em></article>
+    
+    <section>
+      <h2>📡 Latest Signal</h2>
+      <div id="signal-container">
+        <p><em>Loading signal data...</em></p>
+      </div>
     </section>
   </main>
-
-  <footer class="wrap footer">
-    <small>© FourTwenty Analytics · Built as a file-based engine (no build). · <a href="#" id="emit-debug">Emit debug event</a></small>
+  
+  <footer>
+    <p>Part of the <a href="https://zbreeden.github.io/FourTwentyAnalytics/">FourTwenty Analytics</a> constellation</p>
   </footer>
 
-  <!-- App scripts -->
-  <script type="module" src="scripts/story.js"></script>
   <script>
-    // Lightweight README loader (raw file → plain text). Keeps dependencies zero.
-    (function(){
-      const panel = document.getElementById('readme-panel');
-      const link  = document.getElementById('open-readme');
-      if (!panel || !link) return;
-
-      const raw = (function(){
-        try {
-          const url = new URL(window.location.href);
-          const base = url.origin + url.pathname.replace(/\/[^/]*$/, '/');
-          return base + 'README.md';
-        } catch(e) { return 'README.md'; }
-      })();
-
-      fetch(raw).then(r=>r.text()).then(txt=>{
-        const html = txt
-          .replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>')
-          .replace(/^# (.*)$/gm, '<h1>$1</h1>')
-          .replace(/^## (.*)$/gm, '<h2>$1</h2>')
-          .replace(/^### (.*)$/gm, '<h3>$1</h3>')
-          .replace(/^\- (.*)$/gm, '<li>$1</li>')
-          .replace(/\n<li>/g, '<ul><li>').replace(/<\/li>\n(?!<li>)/g,'</li></ul>')
-          .replace(/\n\n/g, '<br/><br/>');
-        panel.innerHTML = html;
-      }).catch(()=>{ panel.innerHTML = '<em>Could not load README in-page. Use the link above.</em>'; });
-    })();
+    // Load and display latest signal data
+    async function loadSignalData() {
+      try {
+        const response = await fetch('./signals/latest.json');
+        if (!response.ok) {
+          throw new Error('Signal data not available');
+        }
+        
+        const signal = await response.json();
+        const container = document.getElementById('signal-container');
+        
+        container.innerHTML = `
+          <div style="border: 1px solid #ddd; padding: 1rem; border-radius: 8px; background: #f9f9f9;">
+            <h3>${signal.emoji || '📡'} ${signal.title}</h3>
+            <p><strong>Summary:</strong> ${signal.summary}</p>
+            <p><strong>Broadcast Time:</strong> ${new Date(signal.ts_utc).toLocaleString()}</p>
+            <p><strong>Rating:</strong> <span style="
+              background: ${signal.rating === 'critical' ? '#ff4444' : 
+                         signal.rating === 'high' ? '#ff8800' : 
+                         signal.rating === 'normal' ? '#4CAF50' : '#888'}; 
+              color: white; 
+              padding: 2px 8px; 
+              border-radius: 4px; 
+              font-size: 0.8em;">${signal.rating}</span></p>
+            ${signal.tags && signal.tags.length > 0 ? 
+              `<p><strong>Tags:</strong> ${signal.tags.map(tag => 
+                `<span style="background: #e1e8ed; padding: 2px 6px; border-radius: 12px; font-size: 0.8em; margin-right: 4px;">${tag}</span>`
+              ).join('')}</p>` : ''}
+            ${signal.payload && signal.payload.notes ? 
+              `<details>
+                <summary>📋 Additional Notes</summary>
+                <p style="margin-top: 0.5rem; padding: 0.5rem; background: white; border-radius: 4px;">${signal.payload.notes}</p>
+              </details>` : ''}
+          </div>
+        `;
+      } catch (error) {
+        document.getElementById('signal-container').innerHTML = 
+          '<p style="color: #888;"><em>Signal data not yet available. Generate signals/latest.json to see broadcast information.</em></p>';
+      }
+    }
+    
+    // Load signal data when page loads
+    loadSignalData();
   </script>
 </body>
 </html>
