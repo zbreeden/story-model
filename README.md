@@ -1,22 +1,32 @@
-# The Story
+# Story Model
 
-A minimal, file‑based narrative engine (scenes + choices) where content lives in `content/story.json`. No frameworks, no build step. The Player handles simulations/probabilities; **The Story** handles narrative.
+> **The Story is the narrator**
 
-## How it works
-- `index.html` loads `scripts/story.js`, which fetches `content/story.json` and renders a scene with interactive choices.
-- Analytics are sent via `scripts/tracker.js` (pushes events to `dataLayer` → GTM → GA4).
-- README is also rendered in‑page (lightweight), and fully viewable via the GitHub link.
+## 🌌 Constellation Information
 
-## Authoring
-Edit `content/story.json`:
-```json
-{
-  "start": "scene_id",
-  "scenes": {
-    "scene_id": {
-      "title": "Readable title",
-      "text": "Narration text. Supports *italics* and **bold**.",
-      "choices": [ { "label": "Button text", "next": "other_scene" } ]
-    }
-  }
-}
+- **Module Key**: `story_model`  
+- **Repository**: `story-model`
+- **Orbit**: `delivery-insight`
+- **Status**: `seed`
+- **Emoji**: 📖
+
+## 🚀 Quick Start
+
+1. **Review seeds/**: Adapt seeded data for this module
+2. **Configure schemas/**: Update schema definitions as needed  
+3. **Generate signals/**: Create latest.json broadcast file
+4. **Run validation**: `scripts/validate.sh`
+
+## 📡 Broadcasting
+
+This module produces a `signals/latest.json` file conforming to the constellation's broadcast schema. The Signal (📡) aggregates these across all stars.
+
+## 🔗 Constellation Links
+
+- **Hub**: [FourTwenty Analytics](https://github.com/zbreeden/FourTwentyAnalytics)
+- **Archive**: Glossary, tags, and canonical definitions
+- **Signal**: Cross-constellation broadcasting and telemetry
+
+---
+
+*This star is part of the FourTwenty Analytics constellation - a modular analytics sandbox where each repository is a specialized "model" within an orbital system.*
